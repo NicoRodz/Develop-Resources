@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.14-management-alpine
+    environment:
+      - RABBITMQ_USER: myuser
+      - RABBITMQ_PASSWORD: mypass
+      - RABBITMQ_VHOST: myvhost
+      - RABBITMQ_PID_FILE: /var/lib/rabbitmq/mnesia/rabbitmq
+    volumes:
+        - ./volumes/rabbitmq/data/:/var/lib/rabbitmq/
+        - ./volumes/rabbitmq/:/var/log/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - marketplacenet
+
+  mariadb: # TODO: Generate a tunnel to connect with mysql client
+    container_name: mariadb
+    hostname: mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: DBPassword
+    ports:
+      - 3306:3306
+    volumes:
+      - ./volumes/mariadb/:/var/lib/mysql
+    networks:
+      - marketplacenet
+
+  redis:
+    image: docker.io/bitnami/redis:6.0.15
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - './volumes/redis:/bitnami/redis/data'
+    networks:
+      - marketplacenet
+
+networks:
+  marketplacenet:
+    external: true
