@@ -5,10 +5,10 @@ services:
     container_name: rabbitmq
     image: rabbitmq:3.8.14-management-alpine
     environment:
-      - RABBITMQ_USER: myuser
-      - RABBITMQ_PASSWORD: mypass
-      - RABBITMQ_VHOST: myvhost
-      - RABBITMQ_PID_FILE: /var/lib/rabbitmq/mnesia/rabbitmq
+      RABBITMQ_USER: myuser
+      RABBITMQ_PASSWORD: mypass
+      RABBITMQ_VHOST: myvhost
+      RABBITMQ_PID_FILE: /var/lib/rabbitmq/mnesia/rabbitmq
     volumes:
         - ./volumes/rabbitmq/data/:/var/lib/rabbitmq/
         - ./volumes/rabbitmq/:/var/log/rabbitmq
@@ -25,7 +25,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: DBPassword
     ports:
-      - 3306:3306
+      - 127.0.0.1:3307:3306
     volumes:
       - ./volumes/mariadb/:/var/lib/mysql
     networks:
@@ -37,7 +37,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
     ports:
-      - '6379:6379'
+      - 6379:6379
     volumes:
       - './volumes/redis:/bitnami/redis/data'
     networks:
