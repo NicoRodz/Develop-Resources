@@ -16,7 +16,7 @@ services:
       - 5672:5672
       - 15672:15672
     networks:
-      - marketplacenet
+      - localnet
 
   mariadb: # TODO: Generate a tunnel to connect with mysql client
     container_name: mariadb
@@ -29,7 +29,7 @@ services:
     volumes:
       - ./volumes/mariadb/:/var/lib/mysql
     networks:
-      - marketplacenet
+      - localnet
 
   redis:
     image: docker.io/bitnami/redis:6.0.15
@@ -41,8 +41,8 @@ services:
     volumes:
       - './volumes/redis:/bitnami/redis/data'
     networks:
-      - marketplacenet
+      - localnet
 
 networks:
-  marketplacenet:
+  localnet:
     external: true

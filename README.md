@@ -6,8 +6,9 @@ This repository will help you to compose all backend for alba in local environme
 
 This repository will up three main resources that you need. The first is a mariadb, next is rmq queue and a redis db. 
 
-```
-1. docker-compose up
+```sh
+1. docker network create localnet
+2. docker-compose up
 ```
 
 ⚠️ Please make sure you have the same network in this repository and all other micro services. 
