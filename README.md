@@ -1,4 +1,4 @@
-# Alba develop tooling
+# Develop tooling
 
 This repository will help you to compose all backend for alba in local environment.
 
