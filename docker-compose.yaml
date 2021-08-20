@@ -18,7 +18,7 @@ services:
     networks:
       - localnet
 
-  mariadb: # TODO: Generate a tunnel to connect with mysql client
+  mariadb:
     container_name: mariadb
     hostname: mariadb
     image: mariadb
@@ -32,6 +32,7 @@ services:
       - localnet
 
   redis:
+    container_name: redis
     image: docker.io/bitnami/redis:6.0.15
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
