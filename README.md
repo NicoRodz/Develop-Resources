@@ -1,27 +1,31 @@
 # Develop tooling
 
-This repository will help you to compose all backend for alba in local environment.
+This repository contain a docker configuration to generate a different resources which are commonly needed when developing in local environment.
 
 ## How to use.
 
-This repository will up three main resources that you need. The first is a mariadb, next is rmq queue and a redis db. 
+Docker compose will up some resources defined in `docker-compose.yaml` file using a new common network `localnet` that you need to create first. 
 
 ```sh
 1. docker network create localnet
 2. docker-compose up
 ```
 
-⚠️ Please make sure you have the same network in this repository and all other micro services. 
+🚀 This repository will store all your info in the `volumes` folder. So, if you delete the ignored `volume` folder all data will be lost.
 
-🚀 This repository will store all your info in the `volumes` folder.
+⚠️ Please make sure you have the same network in this resources repository and all your other services working with docker. 
 
-## Resources documentation.
-
+## Docker resources documentation.
 [Rabbit MQ](https://hub.docker.com/_/rabbitmq)
+
 [Redis](https://hub.docker.com/r/bitnami/redis/)
+
 [MariaDB](https://hub.docker.com/_/mariadb)
 
 ## How to use it.
+First, you need to know your system must live in the same network with this repository, as that, the available url to connect the resources with your system is defined as a `container_name` in `docker-compose.yaml` file.
+
+Also, you can connect to these resources from your local client or web browser. These connections will be explained in each section because there are different ways to do that.
 
 ### Rabbit mq server
 http://localhost:15672   guest:guest
