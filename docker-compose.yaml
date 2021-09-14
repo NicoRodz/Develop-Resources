@@ -5,10 +5,10 @@ services:
     container_name: rabbitmq
     image: rabbitmq:3.8.14-management-alpine
     environment:
-      RABBITMQ_USER: myuser
-      RABBITMQ_PASSWORD: mypass
-      RABBITMQ_VHOST: myvhost
       RABBITMQ_PID_FILE: /var/lib/rabbitmq/mnesia/rabbitmq
+      # RABBITMQ_USER: myuser
+      # RABBITMQ_PASSWORD: mypass
+      # RABBITMQ_VHOST: myvhost
     volumes:
         - ./volumes/rabbitmq/data/:/var/lib/rabbitmq/
         - ./volumes/rabbitmq/:/var/log/rabbitmq
@@ -17,6 +17,7 @@ services:
       - 15672:15672
     networks:
       - localnet
+      - marketplacenet
 
   mariadb:
     container_name: mariadb
@@ -29,6 +30,7 @@ services:
     volumes:
       - ./volumes/mariadb/:/var/lib/mysql
     networks:
+      - marketplacenet
       - localnet
 
   redis:
@@ -42,8 +44,11 @@ services:
     volumes:
       - './volumes/redis:/bitnami/redis/data'
     networks:
+      - marketplacenet
       - localnet
 
 networks:
   localnet:
+    external: true
+  marketplacenet:
     external: true

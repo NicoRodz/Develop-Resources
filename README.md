@@ -22,15 +22,22 @@ Docker compose will up some resources defined in `docker-compose.yaml` file usin
 
 [MariaDB](https://hub.docker.com/_/mariadb)
 
-## How to use it.
+# How to use it.
 First, you need to know your system must live in the same network with this repository, as that, the available url to connect the resources with your system is defined as a `container_name` in `docker-compose.yaml` file.
 
 Also, you can connect to these resources from your local client or web browser. These connections will be explained in each section because there are different ways to do that.
 
-### Rabbit mq server
+## Rabbit mq server
+To see the console in the web browser just use.
+```sh
 http://localhost:15672   guest:guest
+```
+To connect to the queues from local, you need to use the docker url exposed in docker-compose file which is `rabbitmq`.
+```sh
+amqp://guest:guest@rabbitmq:5672
+```
 
-### Maria Database
+## Maria Database
 
 Util commands
 
@@ -47,5 +54,13 @@ When you run this command, the mariadb will live inside a ubuntu system so if yo
 /usr/local/bin/mysql
 ```
 
-#### TLDR;
+## Redis
+If you want to use celery connection with python, do the following:
+```sh
+> pip install -U "celery[redis]"
+redis://:password@hostname:port/db_number
+Info: all fields after the scheme are optional, and will default to localhost on port 6379, using database 0.
+> redis://redis:6379/0
+```
+# TLDR;
 This database is exposed in port `3307` to don't crash by port match with local databases
