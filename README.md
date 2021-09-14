@@ -8,7 +8,7 @@ Docker compose will up some resources defined in `docker-compose.yaml` file usin
 
 ```sh
 1. docker network create localnet
-2. docker-compose up
+2. docker-compose up -d
 ```
 
 🚀 This repository will store all your info in the `volumes` folder. So, if you delete the ignored `volume` folder all data will be lost.
