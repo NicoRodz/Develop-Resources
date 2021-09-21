@@ -64,3 +64,30 @@ Info: all fields after the scheme are optional, and will default to localhost on
 ```
 # TLDR;
 This database is exposed in port `3307` to don't crash by port match with local databases
+
+
+# How to tag
+
+Basic tags
+```bash
+git tag v0.2.0 #this creates a new tag for the current commit
+git tag v0.1.0 commit-hash #Tag oldest commits
+git tag -d v0.1.0 #Delete tag
+git tag -h #HELP
+git tag -l #List and filter tags
+git tag -l "v0.1.*"
+git tag -l "v0.*.0"
+git tag -l "v2.*"
+```
+
+Move between tags
+```bash
+git checkout v0.1.0 #Will generate detached tag
+```
+
+Annotated tags
+```bash
+git tag -a v0.1.0
+git show v0.1.0
+git push origin --tags
+```
