@@ -25,6 +25,10 @@ async function sleep() {
     const task = client.createTask(TASK_NAME);
     try {
         const result = await task.applyAsync([JSON.stringify(ARGS)])
+        result.get().then(data => {
+            console.log(data);
+            client.disconnect();
+          });
     } catch(e) {
         console.log(e)
     }
