@@ -1,2 +1,3 @@
 volumes/*
 !volumes/README.md
+codigo_rabbitmq/node_modules

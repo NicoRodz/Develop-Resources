@@ -29,6 +29,14 @@ services:
       - 127.0.0.1:3307:3306
     volumes:
       - ./volumes/mariadb/:/var/lib/mysql
+    # build:
+    #   context: .
+      # args:
+      #   - haracter-set-client-handshake=FALSE
+      #   - character-set-server=utf8mb4
+      #   - collation-server=utf8mb4_unicode_ci
+      #   - innodb-read-only-compressed=OFF
+      #   - default-character-set=utf8mb4
     networks:
       - marketplacenet
       - localnet
